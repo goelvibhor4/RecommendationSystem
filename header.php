@@ -1,3 +1,10 @@
+<?php
+
+session_start();
+
+
+?>
+
       <!--header start-->
       <header class="header black-bg">
               <div class="sidebar-toggle-box">
@@ -36,16 +43,16 @@
                   
                   </li>
 
-  <a  href="actors.php">
+  <a href="actors.php?actor=<?php echo $_SESSION["actor"] ;?>">
                    <li class="mt">
                      
                           <i class="fa fa-dashboard"></i>
-                          <span><b>Actor</b></span>
+                          <span><b>Actors</b></span>
                   </a>
                   </li>
 
-                   <a  href="actress.php">
-                  <li class="mt">
+<a href="actress.php?actress=<?php echo $_SESSION["actress"] ;?>">                  
+  <li class="mt">
                      
                           <i class="fa fa-dashboard"></i>
                           <span><b>Actress</b></span>

@@ -22,6 +22,12 @@ $_SESSION["actor"]=$actor;
 $_SESSION["actress"]=$actress;
 echo "Session variables are set.";
 */
+$actor = $_GET['actor'];
+$url = "http://158.85.122.170:81/mongo_api/search_call.php?q=".$actor;
+$json = file_get_contents($url);
+$data = json_decode($json,true);
+$Geonames = $data['trailers'];
+$arrlength = count($Geonames);
 
 
 ?>
@@ -68,100 +74,49 @@ echo "Session variables are set.";
 
 include('header.php');
 ?>
-      <!--sidebar end-->
-      
-      <!-- **********************************************************************************************************************************************************
-      MAIN CONTENT
-      *********************************************************************************************************************************************************** -->
-      <!--main content start-->
       <section id="main-content">
           <section class="wrapper">
 
               <div class="row">
                   <div class="col-lg-9 main-chart">
                   
-                  <!-- 	<div class="row mtbox">
-                  		<div class="col-md-2 col-sm-2 col-md-offset-1 box0">
-                  			<div class="box1">
-					  			<span class="li_heart"></span>
-					  			<h3>933</h3>
-                  			</div>
-					  			<p>933 People liked your page the last 24hs. Whoohoo!</p>
-                  		</div>
-                  		<div class="col-md-2 col-sm-2 box0">
-                  			<div class="box1">
-					  			<span class="li_cloud"></span>
-					  			<h3>+48</h3>
-                  			</div>
-					  			<p>48 New files were added in your cloud storage.</p>
-                  		</div>
-                  		<div class="col-md-2 col-sm-2 box0">
-                  			<div class="box1">
-					  			<span class="li_stack"></span>
-					  			<h3>23</h3>
-                  			</div>
-					  			<p>You have 23 unread messages in your inbox.</p>
-                  		</div>
-                  		<div class="col-md-2 col-sm-2 box0">
-                  			<div class="box1">
-					  			<span class="li_news"></span>
-					  			<h3>+10</h3>
-                  			</div>
-					  			<p>More than 10 news were added in your reader.</p>
-                  		</div>
-                  		<div class="col-md-2 col-sm-2 box0">
-                  			<div class="box1">
-					  			<span class="li_data"></span>
-					  			<h3>OK!</h3>
-                  			</div>
-					  			<p>Your server is working perfectly. Relax & enjoy.</p>
-                  		</div>
-                  	
-                  	</div><!-- /row mt -->	 
                   
-                      
                       <div class="row mt">
+
                       <!-- SERVER STATUS PANELS -->
-                      	<div class="col-md-4 col-sm-4 mb">
+                        
+
+<?php 
+for ($x = 0; $x <=2; $x++) {?>
+                        <div class="col-md-4 col-sm-4 mb">
                         <div class="content-panel pn">
                 <div id="blog-bg">
+                  <img src="<?php echo $Geonames[$x]['guid']; ?> "alt="Smiley face" height="150" width="260">
                   
-                  <div class="blog-title">Incredible Title</div>
+                  <div class="blog-title"><?php echo $Geonames[$x]['movie']; ?></div>
                 </div>
                 <div class="blog-text">
-                  <p><?php echo $_SESSION["actor"];?> <a href="#">Read More</a></p>
+                  <p><b>Release date: </b><?php echo $Geonames[$x]['release_date']; ?> </p>
+                  <p><b>Director: </b><?php echo $Geonames[$x]['director']; ?> </p>
+                 <p><a href="recommended.php?id=<?php echo $Geonames[$x]['ID']; ?> ">GET RECOMMENDATIONS</a></p>
                 </div>
               </div>
-                      	</div><!-- /col-md-4-->
-                      	
+                        </div><!-- /col-md-4-->
+                        
+                        <?php }
+?>
 
-                      <!-- 	<div class="col-md-4 col-sm-4 mb">
-                      		<div class="white-panel pn">
-                      			<div class="white-header">
-						  			<h5>TOP PRODUCT</h5>
-                      			</div>
-								<div class="row">
-									<div class="col-sm-6 col-xs-6 goleft">
-										<p><i class="fa fa-heart"></i> 122</p>
-									</div>
-									<div class="col-sm-6 col-xs-6"></div>
-	                      		</div>
-	                      		<div class="centered">
-										<img src="assets/img/product.png" width="120">
-	                      		</div>
-                      		</div>
-                      	</div><!-- /col-md-4 -->
-                      	
-						
-                      	
+                     
+            
+                        
 
-                    </div><!-- /row -->
+                    </div>
                     
-                    				
-				
-					
-					
-                  </div><!-- /col-lg-9 END SECTION MIDDLE -->
+                            
+        
+          
+          
+                  </div>
                   
                   
       <!-- **********************************************************************************************************************************************************
@@ -196,11 +151,11 @@ include('header.php');
 
     <!--script for this page-->
     <script src="assets/js/sparkline-chart.js"></script>    
-	<script src="assets/js/zabuto_calendar.js"></script>	
-	
+  <script src="assets/js/zabuto_calendar.js"></script>  
+  
 
-	
-	<script type="application/javascript">
+  
+  <script type="application/javascript">
         $(document).ready(function () {
             $("#date-popover").popover({html: true, trigger: "manual"});
             $("#date-popover").hide();

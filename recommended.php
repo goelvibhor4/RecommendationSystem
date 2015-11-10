@@ -1,9 +1,7 @@
 <?php
 // Start the session
 session_start();
-error_reporting(0);
-
-$name = $_GET['q1'];
+/*$name = $_GET['q1'];
 $age = $_GET['q2'];
 $type = $_GET['q3'];
 $genre = $_GET['q4'];
@@ -22,12 +20,17 @@ $_SESSION["type"] =$type;
 $_SESSION["genre"]=$genre;
 $_SESSION["actor"]=$actor;
 $_SESSION["actress"]=$actress;
-
-
-$json = file_get_contents('http://158.85.122.170:81/mongo_api/grid_call.php?genres=all&category=bollywood&limit=1000&offset=0');
+echo "Session variables are set.";
+*/
+$id = $_GET['id'];
+echo $id;
+$url = "http://158.85.122.170:81/mongo_api/recom_call.php?id=".$id."&limit=5";
+echo $url; 
+$json = file_get_contents($url);
 $data = json_decode($json,true);
 $Geonames = $data['trailers'];
 $arrlength = count($Geonames);
+
 
 ?>
 
@@ -56,17 +59,23 @@ $arrlength = count($Geonames);
 
     <script src="assets/js/chart-master/Chart.js"></script>
     
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
   </head>
 
   <body>
 
   <section id="container" >
-     
+      <!-- **********************************************************************************************************************************************************
+      TOP BAR CONTENT & NOTIFICATIONS
+      *********************************************************************************************************************************************************** -->
 <?php
 
 include('header.php');
 ?>
-      
       <section id="main-content">
           <section class="wrapper">
 
@@ -76,10 +85,10 @@ include('header.php');
                   
                       <div class="row mt">
                       <!-- SERVER STATUS PANELS -->
-                      	
+                        
 
 <?php 
-for ($x = 0; $x <=10; $x++) {?>
+for ($x = 0; $x <=4; $x++) {?>
                         <div class="col-md-4 col-sm-4 mb">
                         <div class="content-panel pn">
                 <div id="blog-bg">
@@ -93,21 +102,21 @@ for ($x = 0; $x <=10; $x++) {?>
                  <p><a href="recommended.php?id=<?php echo $Geonames[$x]['ID']; ?> ">GET RECOMMENDATIONS</a></p>
                 </div>
               </div>
-                      	</div><!-- /col-md-4-->
-                      	
+                        </div><!-- /col-md-4-->
+                        
                         <?php }
 ?>
 
                      
-						
-                      	
+            
+                        
 
                     </div>
                     
-                    				
-				
-					
-					
+                            
+        
+          
+          
                   </div>
                   
                   
@@ -143,11 +152,11 @@ for ($x = 0; $x <=10; $x++) {?>
 
     <!--script for this page-->
     <script src="assets/js/sparkline-chart.js"></script>    
-	<script src="assets/js/zabuto_calendar.js"></script>	
-	
+  <script src="assets/js/zabuto_calendar.js"></script>  
+  
 
-	
-	<script type="application/javascript">
+  
+  <script type="application/javascript">
         $(document).ready(function () {
             $("#date-popover").popover({html: true, trigger: "manual"});
             $("#date-popover").hide();
