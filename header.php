@@ -13,6 +13,11 @@ session_start();
             <!--logo start-->
             <a href="dashboard.php" class="logo"><b>Movie Recommendation</b></a>
             <!--logo end-->
+<div class="pull-right">
+<form action="logout.php">
+  <input type="submit" value=" Logout"  align="right" width="48" height="48">
+</form>              </div>
+
            </header>
       <!--header end-->
       
@@ -59,7 +64,7 @@ session_start();
                    </a>
                   </li>
 
-                  <li class="sub-menu">
+              <!--     <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-desktop"></i>
                           <span>UI Elements</span>
@@ -69,7 +74,7 @@ session_start();
                           <li><a  href="buttons.html">Buttons</a></li>
                           <li><a  href="panels.html">Panels</a></li>
                       </ul>
-                  </li>
+                  </li> -->
 
               </ul>
               <!-- sidebar menu end-->

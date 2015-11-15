@@ -1,6 +1,9 @@
 <?php
 // Start the session
 session_start();
+
+error_reporting(0);
+
 /*$name = $_GET['q1'];
 $age = $_GET['q2'];
 $type = $_GET['q3'];
@@ -91,7 +94,7 @@ for ($x = 0; $x <=2; $x++) {?>
                         <div class="col-md-4 col-sm-4 mb">
                         <div class="content-panel pn">
                 <div id="blog-bg">
-                  <img src="<?php echo $Geonames[$x]['guid']; ?> "alt="Smiley face" height="150" width="260">
+                  <img src="<?php echo $Geonames[$x]['guid']; ?> "alt="Smiley face" height="150" width="295">
                   
                   <div class="blog-title"><?php echo $Geonames[$x]['movie']; ?></div>
                 </div>

@@ -9,12 +9,12 @@ $type = $_GET['q3'];
 $genre = $_GET['q4'];
 $actor= $_GET['q5'];
 $actress = $_GET['q6'];
-echo $name;
+/*echo $name;
 echo $age;
 echo $type;
 echo $genre;
 echo $actor;
-echo $actress;
+echo $actress;*/
 
 $_SESSION["name"] = $name;
 $_SESSION["age"] =$age;
@@ -22,9 +22,9 @@ $_SESSION["type"] =$type;
 $_SESSION["genre"]=$genre;
 $_SESSION["actor"]=$actor;
 $_SESSION["actress"]=$actress;
+$url = "http://158.85.122.170:81/mongo_api/grid_call.php?genres=".$genre."&category=".$type."&limit=1000&offset=0";
 
-
-$json = file_get_contents('http://158.85.122.170:81/mongo_api/grid_call.php?genres=all&category=bollywood&limit=1000&offset=0');
+$json = file_get_contents($url);
 $data = json_decode($json,true);
 $Geonames = $data['trailers'];
 $arrlength = count($Geonames);
@@ -83,7 +83,7 @@ for ($x = 0; $x <=10; $x++) {?>
                         <div class="col-md-4 col-sm-4 mb">
                         <div class="content-panel pn">
                 <div id="blog-bg">
-                  <img src="<?php echo $Geonames[$x]['guid']; ?> "alt="Smiley face" height="150" width="260">
+                  <img src="<?php echo $Geonames[$x]['guid']; ?> "alt="Smiley face" height="150" width="295">
                   
                   <div class="blog-title"><?php echo $Geonames[$x]['movie']; ?></div>
                 </div>
